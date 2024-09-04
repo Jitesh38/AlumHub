@@ -1,24 +1,91 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}
-AlumHub - Seminar
-{% endblock title %}
+  {% block css %}
+
+  <style>
+    .sem
+    {
+      margin: 40px;
+    }
+    .slider_section 
+    {
+      background-color: #c7cccf;
+    }
+    .header_bottom
+    {
+      background-color: #6C4E31;
+    }
+    .navbar-brand span
+    {
+      color: #ffffff;
+    }
+    .card-body img
+    {
+      width: 300px;
+      height: 150px;
+      border-radius: 20px;
+    }
+    .card-body h1
+    {
+      margin: 60px;
+
+    }
+    .card
+    {
+      border: 1px solid #6C4E31;
+    }
+    .card-body
+    {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card span
+    {
+        margin : 30px;
+    }.enroll
+    {
+        margin-left: 600px;
+        margin-bottom: 20px;
+        margin-top: -20px;
+    }
+    .btn
+    {
+      background-color: #6C4E31;
+      color: #ffffff;
+      border:#6C4E31;
+    }
+    .btn :hover
+    {
+      background-color: white;
+      color: #6C4E31;
+      border:#6C4E31;
+    }
+  </style>
+
+  {% endblock css %}
+
 
 {% block body %}
-{% for s in seminar  %}
-<b>{{ s.organization_name }}</b>
-<br>
-<b>{{ s.mentor_name }}</b>
-<br>
-<b>{{ s.subject }}</b>
-<br>
-<b>{{ s.datetime }}</b>
-<br>
-<b>{{ s.duration }}</b>
-<br>
-<b>{{ s.description }}</b>
-<br>
-
-{% endfor %}
+       <div class="sem">
+        <div class="card">
+            <div class="card-body">
+                <img src="{% static 'images/client-1.jpg' %}" class="img-thumbnail" alt="..."><h1>Software Testing</h1>
+            </div>
+            <center><hr style="width:95%;border:1px solid black;"></center>
+            <br>
+            <div class="enroll">
+                <h6><b>Organization Name : </b><span>Alum University</span></h6>
+                <h6><b>Speaker Name : </b><span>Sujal Parmar</span></h6>
+                <h6><b>Date : </b><span>5<sup>th</sup> Sep,2024</span></h6>
+                <h6><b>Time : </b><span>12:30 PM</span></h6>
+                <h6><b>Duration : </b><span>1 Hour</span></h6>
+                <h6><b>Description : </b><span>Enhance your technical skill</span></h6>
+              </div>
+                <center><button class="btn btn-primary" type="submit">Submit form</button></center>
+                <br>
+        </div>
+        </div>
 
 {% endblock body %}
