@@ -12,7 +12,7 @@ context={}
 def base(request):
    return render(request,'base.html')
 
-def home(request):
+def index(request):
   return render(request,'index.html')
   
 def register(request):
@@ -49,11 +49,23 @@ def register(request):
   return render(request,'customer/register.html',context)
 
 
-def login(request):
-  return render(request,'login.html')
+def loginPage(request):
+  if request.method == "POST":
+    loginusername = request.POST['loginusername']
+    loginpassword = request.POST['loginpassword']
+    user=authenticate(username=loginusername,password=loginpassword)
+    if user is not None:
+      login(request,user)
+      messages.success(request,"Successfully Logged In!")
+      return redirect(index)
+    else:
+      messages.error(request,"Invalid Credentials")
+  return render(request,'login.html',context)
+    
 
-def logout(request):
-  return render(request,'logout.html')
+def logoutPage(request):
+  logout(request)
+  return redirect(index)
 
 def profile(request):
   alumni_det = alumni.objects.all()
@@ -81,6 +93,14 @@ def success(request):
             'success' : success,
         }
         return redirect(home,context)
+      
+def alumregister(request):
+  # if request.method == "POST":
+    
+    
+  # pass
+  # if method
+  return render(request,'alumni_register.html')
   
   
 

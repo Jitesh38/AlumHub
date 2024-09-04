@@ -1,1 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container">
+
+  
+  <form method="post" action='/MainApp/login'> 
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="uname" class="form-label">User Name:</label>
+      <input type="text" class="form-control" id="loginusername" aria-describedby="emailHelp" name="loginusername">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="pass" class="form-label">Password</label>
+    <input type="password" class="form-control" id="loginpassword" name="loginpassword">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+</div>
+{% endblock body %} 
