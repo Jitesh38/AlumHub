@@ -9,11 +9,22 @@ Profile
 
 {% block body %}
   {{ alumni.0.user.username}}
-  <img src="/media/{{ alumni.0.profile }}" alt="nai thayu" >
+  {% comment %} <img src="/media/{{ alumni.0.profile }}" alt="nai thayu" > {% endcomment %}
   {{ alumni.0.course }}
   {{ alumni.0.passyear }}
   {{ alumni.0.gpa }}
 
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <h1>exp details</h1>
+  {% comment %} {%for e in exp%} {% endcomment %}
+  {{ alumni.exp.0.year }}
+  {% comment %} {% endfor %} {% endcomment %}
   {% comment %} {{ alumni.0. }} {% endcomment %}
 
 {% endblock body %}

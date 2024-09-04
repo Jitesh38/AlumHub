@@ -56,7 +56,10 @@ def profile(request):
   alumni_det = alumni.objects.all()
   exp=experience.objects.all()
   project=projects.objects.all()
-  context={'alumni':alumni_det,'project':project,'exp':exp}
+  context={'alumni':alumni_det,
+           'project':project,
+           'exp':exp}
+  print(exp)
   return render(request,'alumni_profile.html',context)
 
 def success(request):

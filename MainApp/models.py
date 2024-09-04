@@ -25,7 +25,7 @@ class experience(models.Model):
   year = models.CharField(max_length=50)
     
   def __str__(self):
-    return self.alumni
+    return self.alumni.user.username
 
   
 class projects(models.Model):
