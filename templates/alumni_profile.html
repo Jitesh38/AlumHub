@@ -22,9 +22,11 @@ Profile
   <br>
 
   <h1>exp details</h1>
-  {% comment %} {%for e in exp%} {% endcomment %}
-  {{ alumni.exp.0.year }}
-  {% comment %} {% endfor %} {% endcomment %}
+
+  {% comment %} {{alumni.exp.year}} {% endcomment %}
+  {% comment %} {% for e in exp %}
+    {{e.0.year}}
+  {% endfor %} {% endcomment %}
   {% comment %} {{ alumni.0. }} {% endcomment %}
 
 {% endblock body %}

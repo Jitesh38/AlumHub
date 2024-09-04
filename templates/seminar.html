@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+AlumHub - Seminar
+{% endblock title %}
+
+{% block body %}
+{% for s in seminar  %}
+<b>{{ s.organization_name }}</b>
+<br>
+<b>{{ s.mentor_name }}</b>
+<br>
+<b>{{ s.subject }}</b>
+<br>
+<b>{{ s.datetime }}</b>
+<br>
+<b>{{ s.duration }}</b>
+<br>
+<b>{{ s.description }}</b>
+<br>
+
+{% endfor %}
+
+{% endblock body %}

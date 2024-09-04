@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
-from .models import alumni,experience,projects
+from .models import alumni,experience,projects,Seminar
 
 
 
@@ -58,9 +58,15 @@ def profile(request):
   project=projects.objects.all()
   context={'alumni':alumni_det,
            'project':project,
-           'exp':exp}
-  print(exp)
+           'exp':exp
+          }
+  print(alumni)
   return render(request,'alumni_profile.html',context)
+
+def seminar(request):
+  seminar = Seminar.objects.all()
+  context={'seminar':seminar}
+  return render(request,'seminar.html',context)
 
 def success(request):
     if request.method == 'POST':
