@@ -9,8 +9,11 @@ from .models import alumni,experience,projects,Seminar
 # Create your views here.
 context={}
 
+def base(request):
+   return render(request,'base.html')
+
 def home(request):
-  return render(request,'base.html')
+  return render(request,'index.html')
   
 def register(request):
   if request.method == "POST":
