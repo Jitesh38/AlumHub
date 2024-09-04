@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
-
+from .models import alumni,experience,projects
 
 
 
@@ -37,10 +37,38 @@ def register(request):
         myuser.first_name = name
         myuser.save()
         user=authenticate(username=myuser.username,password=pass1)
+        
         login(request,user)
         # messages.success(request, "Account Created Successfully!")
+        
         
         return redirect(register)
   return render(request,'customer/register.html',context)
 
+
+def login(request):
+  return render(request,'login.html')
+
+def logout(request):
+  return render(request,'logout.html')
+
+def profile(request):
+  alumni_det = alumni.objects.all()
+  exp=experience.objects.all()
+  project=projects.objects.all()
+  context={'alumni':alumni_det,'project':project,'exp':exp}
+  return render(request,'alumni_profile.html',context)
+
+def success(request):
+    if request.method == 'POST':
+        story = request.POST.get('story')
+        alumni = alumni.objects.filter(user=request.user)
+        # success = Success.objects.create()
+        context = {
+            'alumni' : alumni ,
+            'success' : success,
+        }
+        return redirect(home,context)
+  
+  
 

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+
+
+
+{% block body %}
+  {{ alumni.0.user.username}}
+  <img src="/media/{{ alumni.0.profile }}" alt="nai thayu" >
+  {{ alumni.0.course }}
+  {{ alumni.0.passyear }}
+  {{ alumni.0.gpa }}
+
+  {% comment %} {{ alumni.0. }} {% endcomment %}
+
+{% endblock body %}

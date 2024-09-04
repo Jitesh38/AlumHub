@@ -3,12 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Base Html</title>
+  <title>
+    {% block title %}
+    Write title here using these tags
+    {% endblock title %}
+  
+  </title>
 </head>
 <body>
   <h1>
     base html to edit
   </h1>
+  {% block body %}
+  {% endblock body %}
   
 </body>
 </html>
