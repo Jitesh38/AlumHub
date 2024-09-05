@@ -19,34 +19,38 @@ def register(request):
   if request.method == "POST":
         email = request.POST['email']
         username = request.POST['username']
-        name = request.POST['name']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']        
+        role = request.POST['role']        
 
         # check for errorneous input
-        if len(username)>10:
-            # messages.error(request, " Your user name must be under 10 characters")
-            return redirect('register')
+        # if len(username)>10:
+        #     # messages.error(request, " Your user name must be under 10 characters")
+        #     return redirect('register')
 
-        if not username.isalnum():
-            # messages.error(request, " User name should only contain letters and numbers")
-            return redirect('index')
+        # if not username.isalnum():
+        #     # messages.error(request, " User name should only contain letters and numbers")
+        #     return redirect('index')
         
         if (pass1!= pass2):
-            # messages.error(request, " Passwords do not match")
+            messages.error(request, "Passwords do not match")
             return redirect('index')
 
         myuser = User.objects.create_user(username,email,pass1)
-        myuser.first_name = name
+        myuser.first_name = fname
+        myuser.last_name=lname
         myuser.save()
-        user=authenticate(username=myuser.username,password=pass1)
-        
+        user=authenticate(username=myuser.username,password=pass1)        
         login(request,user)
-        # messages.success(request, "Account Created Successfully!")
-        
-        
-        return redirect(register)
-  return render(request,'customer/register.html',context)
+        messages.success(request, "Account Created Successfully!") 
+        request.session['role'] = role
+        if role == 'alumni':
+          return redirect(alumregister)        
+        return redirect(index)
+
+  return render(request,'register.html',context)
 
 
 def loginPage(request):
@@ -61,21 +65,47 @@ def loginPage(request):
     else:
       messages.error(request,"Invalid Credentials")
   return render(request,'login.html',context)
+
+
+def alumregister(request):
+  # if  request.session['role'] != 'alumni':
+  #   return redirect(index)
+  if request.method == "POST":
+    profilePic = request.POST['profilePic']
+    course = request.POST['course']   
+    startYear = request.POST['startYear'] 
+    endYear = request.POST['endYear'] 
+    gpa = request.POST['gpa']  
+    
+    alum = alumni(user=request.user,profile=profilePic,course=course,startyear=startYear,endyear=endYear,gpa=gpa)
+    alum.save()
+    messages.success(request,'Profile Updated Successfully')
+    return redirect(index)
+  
+  return render(request,'alumni_register.html')
+  # if request.method == "POST":
+    
+    
+  # pass
+  # if method
+  
     
 
 def logoutPage(request):
   logout(request)
   return redirect(index)
 
-def profile(request):
-  alumni_det = alumni.objects.all()
-  exp=experience.objects.all()
-  project=projects.objects.all()
-  context={'alumni':alumni_det,
-           'project':project,
-           'exp':exp
-          }
-  print(alumni)
+def profile(request,slug):
+  user=User.objects.get(username = slug)
+  alumni_det = alumni.objects.filter(user = user).first()
+  exp_all=experience.objects.filter(alumni=alumni_det).first()
+  exp=experience.objects.filter(alumni=alumni_det).first()
+  project=projects.objects.filter(company = exp )
+  context={'alumni':alumni_det,'exp':exp,'project':project}
+  print(user)
+  print(alumni_det)
+  print(exp)
+  print(project)
   return render(request,'alumni_profile.html',context)
 
 def seminar(request):
@@ -92,15 +122,4 @@ def success(request):
             'alumni' : alumni ,
             'success' : success,
         }
-        return redirect(home,context)
-      
-def alumregister(request):
-  # if request.method == "POST":
-    
-    
-  # pass
-  # if method
-  return render(request,'alumni_register.html')
-  
-  
-
+        return redirect(home,context)  

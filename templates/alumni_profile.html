@@ -1,32 +1,89 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-Profile
+{{ project.0.projectname }}
 {% endblock title %}
 
 
+{% block body %} 
 
 
-{% block body %}
-  {{ alumni.0.user.username}}
-  {% comment %} <img src="/media/{{ alumni.0.profile }}" alt="nai thayu" > {% endcomment %}
-  {{ alumni.0.course }}
-  {{ alumni.0.passyear }}
-  {{ alumni.0.gpa }}
 
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+<div class="container mt-5">
+  <div class="row">
+      <!-- Profile Section -->
+      <div class="col-md-4">
+          <div class="card text-center">
+              <div class="card-body">
+                  <img src="/media/{{ alumni.profile }}" alt="Profile Picture" class="rounded-circle mb-3" width="150">
+                  <h3 class="card-title">{{ alumni.user.first_name }} {{ alumni.user.last_name }}</h3>
+                  <p class="text-muted">Software Engineer</p>
+                  <p><strong>Email:</strong> {{ alumni.user.email }}</p>
+                  <p><strong>Location:</strong> San Francisco, CA</p>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Education and Projects Section -->
+      <div class="col-md-8">
+          <!-- Education Section -->
+          <div class="card mb-4">
+              <div class="card-header bg-primary text-white">
+                  <h4>Education</h4>
+              </div>
+              <div class="card-body">
+                  <div class="mb-3">
+                      <h5 class="card-title">{{ alumni.course }}</h5>
+                      <p class="text-muted">{{alumni.startyear}} - {{alumni.endyear}}</p>
+                      <p><strong>GPA:</strong> {{alumni.gpa}}/10.0</p>
+                  </div>
+                  <hr>
+              </div>
+          </div>
+          
+      <!-- Education and Projects Section -->
+      <div class="col-md-8">
+          <!-- Education Section -->
+          <div class="card mb-4">
+              <div class="card-header bg-primary text-white">
+                  <h4>Education</h4>
+              </div>
+              <div class="card-body">
+                  <div class="mb-3">
+                      <h5 class="card-title">{{ alumni.course }}</h5>
+                      <p class="text-muted">{{alumni.startyear}} - {{alumni.endyear}}</p>
+                      <p><strong>GPA:</strong> {{alumni.gpa}}/10.0</p>
+                  </div>
+                  <hr>
+              </div>
+          </div>
 
-  <h1>exp details</h1>
+          <!-- Projects Section -->
+          <div class="card">
+              <div class="card-header bg-primary text-white">
+                  <h4>Projects</h4>
+              </div>
+              <div class="card-body">
+                {% for project in  project %}
+                  <div class="mb-3">
+                      <h5 class="card-title">{{project.projectname}}</h5>
+                      <p class="text-muted"></p>
+                      <p>{{ project.projectdetails }}</p>
+                      <a href="{{project.link}}" >
+                        {{project.link}}
+                      </a>
+                  </div>
+                  <hr>
+                  
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
-  {% comment %} {{alumni.exp.year}} {% endcomment %}
-  {% comment %} {% for e in exp %}
-    {{e.0.year}}
-  {% endfor %} {% endcomment %}
-  {% comment %} {{ alumni.0. }} {% endcomment %}
+
 
 {% endblock body %}

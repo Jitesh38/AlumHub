@@ -9,7 +9,8 @@ class alumni(models.Model):
   user=models.ForeignKey(User,on_delete=models.CASCADE)
   profile=models.ImageField(upload_to='profile/')
   course=models.CharField(max_length=100)
-  passyear=models.CharField(max_length=100)
+  startyear=models.IntegerField()
+  endyear=models.IntegerField()
   gpa=models.IntegerField()
   # year = models.CharField(max_length=50)
 
@@ -23,7 +24,7 @@ class experience(models.Model):
   year = models.CharField(max_length=50)
     
   def __str__(self):
-    return self.alumni.user.username
+    return self.companyname +' of '+ self.alumni.user.username
 
   
 class projects(models.Model):
@@ -33,7 +34,7 @@ class projects(models.Model):
   link=models.CharField(max_length=200)
   
   def __str__(self):
-    return self.projectname
+    return self.projectname + ' of ' + self.company.companyname
   
 # class skills(models.Model):
 #   project=models.ForeignKey(projects,on_delete=models.CASCADE)

@@ -25,6 +25,6 @@ urlpatterns = [
     path('alumregister', views.alumregister, name='alumregister'),
     path('login', views.loginPage, name='login'),
     path('logout', views.logoutPage, name='logout'),
-    path('profile', views.profile, name='profile'),
+    path('profile/<str:slug>', views.profile, name='profile'),
     path('seminar', views.seminar, name='seminar'),
 ]
