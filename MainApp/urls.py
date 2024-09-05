@@ -30,4 +30,5 @@ urlpatterns = [
     path('alumni', views.alumniFunc, name='alumni'),
     path('search', views.search, name='alumni'),
     path('alumniexp', views.alumniExp, name='alumniexp'),
+    path('donation', views.donation, name='donation'),
 ]

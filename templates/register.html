@@ -1,70 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block body %}
-
-<div class="container">
-    <form class="row g-3" action="/register" method="post" >
-        {% csrf_token %}
-
-        <div class="row ">
-            <div class="col-md-3 col-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}" />
+<div class="container2">
+    <!-- Title moved above the form and centered -->
+    <div class="title">Registration</div>
+    <div class="container1">
+        <form action="/register" method="post">
+            {% csrf_token %}
+            <div class="user-details1">
+                <div class="input-box1">
+                    <span class="details1">First Name</span>
+                    <input type="text" placeholder="Enter your first name" id="fname" name="fname" required />
+                </div>
+                <div class="input-box1">
+                    <span class="details1">Last Name</span>
+                    <input type="text" placeholder="Enter your last name" id="lname" name="lname" required />
+                </div>
+                <div class="input-box1">
+                    <span class="details1">Username</span>
+                    <input type="text" placeholder="Enter your username" id="username" name="username" required />
+                </div>
+                <div class="input-box1">
+                    <span class="details1">Email</span>
+                    <input type="email" placeholder="Enter your email" id="email" name="email" required />
+                </div>
+                <div class="input-box1">
+                    <span class="details1">Password</span>
+                    <input type="password" placeholder="Enter Password" id="pass1" name="pass1" required />
+                </div>
+                <div class="input-box1">
+                    <span class="details1">Confirm Password</span>
+                    <input type="password" placeholder="Enter Confirm Password" id="pass2" name="pass2" required />
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="row ">
 
-            <div class="col-md-3 col-3">
-                <label for="email" class="form-label">User Name:</label>
-                <input type="text" class="form-control" id="username" name="username">
+            <div class="gender-details1">
+                <input type="radio" name="role" id="dot-1" />
+                <input type="radio" name="role" id="dot-2" />
+                <span class="gender-title1">Are You?</span>
+                <div class="category1">
+                    <label for="dot-1">
+                        <span class="dot one1"></span>
+                        <span class="gender1">Student</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two1"></span>
+                        <span class="gender1">Alumni</span>
+                    </label>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="row ">
 
-            <div class="col-md-6">
-                <label for="email" class="form-label">First Name:</label>
-                <input type="text" class="form-control" id="fname" name="fname">
-            </div>
-        </div>
-        <br>
-        <div class="row ">
-
-            <div class="col-md-6">
-                <label for="email" class="form-label">Last Name:</label>
-                <input type="text" class="form-control" id="lname" name="lname">
-            </div>
-        </div>
-        <br>
-        <div class="row ">
-
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="pass1" name="pass1">
-            </div>
-        </div>
-        <br>
-        <div class="row ">
-
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Confirm Password:</label>
-                <input type="password" class="form-control" id="pass2" name="pass2">
-            </div>
-        </div>
-        <br>
-
-        <select class="form-select" aria-label="Default select example" name="role" id="role">
-            <option selected>Select Your Designation</option>
-            <option value="student">Student</option>
-            <option value="alumni">Alumni</option>
-            <option value="faculty">Faculty</option>
-        </select>
-
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
-    </form>
+            <div class="button1">
+                <input type="submit" value="Register" />
+              </div>
+        </form>
+    </div>
 </div>
-
 {% endblock body %}

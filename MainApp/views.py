@@ -135,6 +135,9 @@ def search(request):
 def alumniExp(request):
   return render(request,'alumni_exp.html')
 
+def donation(request):
+   return render(request,'donation.html')
+
 # def success(request):
 #     if request.method == 'POST':
 #         story = request.POST.get('story')
