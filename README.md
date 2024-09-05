@@ -9,7 +9,7 @@
   
 </p>
 
-![Alt Text](./Screenshot (418).png.png)
+![Alt Text](https://github.com/Jitesh38/AlumHub/blob/main/Screenshot%20(418).png)
 
 
 Screenshot (418).png
