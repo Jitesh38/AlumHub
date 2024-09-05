@@ -27,4 +27,7 @@ urlpatterns = [
     path('logout', views.logoutPage, name='logout'),
     path('profile/<str:slug>', views.profile, name='profile'),
     path('seminar', views.seminar, name='seminar'),
+    path('alumni', views.alumniFunc, name='alumni'),
+    path('search', views.search, name='alumni'),
+    path('alumniexp', views.alumniExp, name='alumniexp'),
 ]

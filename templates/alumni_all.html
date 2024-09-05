@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} AlumHub - Alumni details {% endblock title %}
+{% block body %}
+
+<form class="d-flex" action="/search" method="get">
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+  {% for alumni in alumni  %}
+    <p>{{alumni.user.first_name}} {{alumni.user.last_name}}</p>
+  {% endfor %}
+
+  {% for alluser in alluser  %}
+  <h1>Name </h1>
+    <p>{{alluser.username}} {{alluser.last_name}}</p>
+  {% endfor %}
+
+{% endblock body %}

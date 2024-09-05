@@ -68,6 +68,8 @@
 
 
 {% block body %}
+{% for s in seminar  %}
+
        <div class="sem">
         <div class="card">
             <div class="card-body">
@@ -76,16 +78,19 @@
             <center><hr style="width:95%;border:1px solid black;"></center>
             <br>
             <div class="enroll">
-                <h6><b>Organization Name : </b><span>Alum University</span></h6>
-                <h6><b>Speaker Name : </b><span>Sujal Parmar</span></h6>
-                <h6><b>Date : </b><span>5<sup>th</sup> Sep,2024</span></h6>
+                <h6><b>Organization Name : </b><span>{{ s.organization_name }}</span></h6>
+                <h6><b>Speaker Name : </b><span>{{ s.mentor_name }}</span></h6>
+                <h6><b>Speaker Name : </b><span>{{ s.subject }}</span></h6>
+                <h6><b>Date : </b><span>5<sup>th</sup> {{ s.datetime }}</span></h6>
                 <h6><b>Time : </b><span>12:30 PM</span></h6>
-                <h6><b>Duration : </b><span>1 Hour</span></h6>
-                <h6><b>Description : </b><span>Enhance your technical skill</span></h6>
+                <h6><b>Duration : </b><span>{{ s.duration }}</span></h6>
+                <h6><b>Description : </b><span>{{ s.description }}</span></h6>
               </div>
                 <center><button class="btn btn-primary" type="submit">Submit form</button></center>
                 <br>
         </div>
         </div>
+{% endfor %}
+
 
 {% endblock body %}

@@ -28,13 +28,14 @@ class experience(models.Model):
 
   
 class projects(models.Model):
-  company=models.ForeignKey(experience,on_delete=models.CASCADE)
+  alumni=models.ForeignKey(alumni,on_delete=models.CASCADE)
   projectname=models.CharField(max_length=100)
   projectdetails=models.TextField()
   link=models.CharField(max_length=200)
   
   def __str__(self):
-    return self.projectname + ' of ' + self.company.companyname
+    return self.projectname + ' of ' + self.alumni.user.username
+
   
 # class skills(models.Model):
 #   project=models.ForeignKey(projects,on_delete=models.CASCADE)

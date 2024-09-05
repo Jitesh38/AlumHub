@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login ,logout
 from .models import alumni,experience,projects,Seminar
 
 
-
 # Create your views here.
 context={}
 
@@ -82,25 +81,19 @@ def alumregister(request):
     messages.success(request,'Profile Updated Successfully')
     return redirect(index)
   
-  return render(request,'alumni_register.html')
-  # if request.method == "POST":
-    
-    
-  # pass
-  # if method
-  
+  return render(request,'alumni_register.html')  
     
 
 def logoutPage(request):
   logout(request)
+  messages.success(request,'Log out Successfully')
   return redirect(index)
 
 def profile(request,slug):
   user=User.objects.get(username = slug)
   alumni_det = alumni.objects.filter(user = user).first()
-  exp_all=experience.objects.filter(alumni=alumni_det).first()
-  exp=experience.objects.filter(alumni=alumni_det).first()
-  project=projects.objects.filter(company = exp )
+  exp=experience.objects.filter(alumni=alumni_det)
+  project=projects.objects.filter( alumni = alumni_det )
   context={'alumni':alumni_det,'exp':exp,'project':project}
   print(user)
   print(alumni_det)
@@ -113,13 +106,42 @@ def seminar(request):
   context={'seminar':seminar}
   return render(request,'seminar.html',context)
 
-def success(request):
-    if request.method == 'POST':
-        story = request.POST.get('story')
-        alumni = alumni.objects.filter(user=request.user)
-        # success = Success.objects.create()
-        context = {
-            'alumni' : alumni ,
-            'success' : success,
-        }
-        return redirect(home,context)  
+
+def alumniFunc(request):
+  alumnis = alumni.objects.all()
+  context={'alumni':alumnis}
+  return render(request,'alumni_all.html',context)
+
+def search(request):
+  if request.method == 'GET':
+    search = request.GET['search']
+    if len(search) > 70:
+        messages.error(request, "Enter a Valid Keyword to Search")
+        alumnis = alumni.objects.none()            
+    else:
+      userFname=User.objects.filter(first_name__icontains=search)
+      userLname=User.objects.filter(last_name=search)
+      alluser=userFname.union(userLname)[0]
+      alumnis=alumni.objects.filter(user=alluser)
+      if alumnis.count() == 0:
+        messages.warning(request, "Search Results not found.")
+          #is staff logic
+      else:
+        context={'alumni':alumnis,'search':search}
+        print(alumni)
+        return render(request,'alumni_all.html',context)
+  return redirect(alumniFunc)
+
+def alumniExp(request):
+  return render(request,'alumni_exp.html')
+
+# def success(request):
+#     if request.method == 'POST':
+#         story = request.POST.get('story')
+#         alumni = alumni.objects.filter(user=request.user)
+#         # success = Success.objects.create()
+#         context = {
+#             'alumni' : alumni ,
+#             'success' : success,
+#         }
+#         return redirect(home,context)  

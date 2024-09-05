@@ -1,89 +1,90 @@
-{% extends 'base.html' %}
-{% load static %}
-
+{% extends 'base.html' %} 
+{% load static %} 
 {% block title %}
-{{ project.0.projectname }}
+{{ alumni.user.first_name }} {{ alumni.user.last_name }}
 {% endblock title %}
-
-
-{% block body %} 
-
-
-
+{% block body %}
 
 <div class="container mt-5">
   <div class="row">
-      <!-- Profile Section -->
-      <div class="col-md-4">
-          <div class="card text-center">
-              <div class="card-body">
-                  <img src="/media/{{ alumni.profile }}" alt="Profile Picture" class="rounded-circle mb-3" width="150">
-                  <h3 class="card-title">{{ alumni.user.first_name }} {{ alumni.user.last_name }}</h3>
-                  <p class="text-muted">Software Engineer</p>
-                  <p><strong>Email:</strong> {{ alumni.user.email }}</p>
-                  <p><strong>Location:</strong> San Francisco, CA</p>
-              </div>
-          </div>
+    <!-- Profile Section -->
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <img
+            src="/media/{{ alumni.profile }}"
+            alt="Profile Picture"
+            class="rounded-circle mb-3"
+            width="150"
+          />
+          <h3 class="card-title">
+            {{ alumni.user.first_name }} {{ alumni.user.last_name }}
+          </h3>
+          <p class="text-muted">Software Engineer</p>
+          <p><strong>Email:</strong> {{ alumni.user.email }}</p>
+          <p><strong>Location:</strong> San Francisco, CA</p>
+        </div>
       </div>
-      
-      <!-- Education and Projects Section -->
-      <div class="col-md-8">
-          <!-- Education Section -->
-          <div class="card mb-4">
-              <div class="card-header bg-primary text-white">
-                  <h4>Education</h4>
-              </div>
-              <div class="card-body">
-                  <div class="mb-3">
-                      <h5 class="card-title">{{ alumni.course }}</h5>
-                      <p class="text-muted">{{alumni.startyear}} - {{alumni.endyear}}</p>
-                      <p><strong>GPA:</strong> {{alumni.gpa}}/10.0</p>
-                  </div>
-                  <hr>
-              </div>
-          </div>
-          
-      <!-- Education and Projects Section -->
-      <div class="col-md-8">
-          <!-- Education Section -->
-          <div class="card mb-4">
-              <div class="card-header bg-primary text-white">
-                  <h4>Education</h4>
-              </div>
-              <div class="card-body">
-                  <div class="mb-3">
-                      <h5 class="card-title">{{ alumni.course }}</h5>
-                      <p class="text-muted">{{alumni.startyear}} - {{alumni.endyear}}</p>
-                      <p><strong>GPA:</strong> {{alumni.gpa}}/10.0</p>
-                  </div>
-                  <hr>
-              </div>
-          </div>
+    </div>
 
-          <!-- Projects Section -->
-          <div class="card">
-              <div class="card-header bg-primary text-white">
-                  <h4>Projects</h4>
-              </div>
-              <div class="card-body">
-                {% for project in  project %}
-                  <div class="mb-3">
-                      <h5 class="card-title">{{project.projectname}}</h5>
-                      <p class="text-muted"></p>
-                      <p>{{ project.projectdetails }}</p>
-                      <a href="{{project.link}}" >
-                        {{project.link}}
-                      </a>
-                  </div>
-                  <hr>
-                  
-                {% endfor %}
-              </div>
+    <!-- Education and Projects Section -->
+    <div class="col-md-8">
+      <!-- Education Section -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h4>Education</h4>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <h5 class="card-title">{{ alumni.course }}</h5>
+            <p class="text-muted">{{alumni.startyear}} - {{alumni.endyear}}</p>
+            <p><strong>GPA:</strong> {{alumni.gpa}}/10.0</p>
           </div>
+          <hr />
+        </div>
       </div>
+      {% if exp %}
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h4>Experience</h4>
+        </div>
+        {% for exp  in exp %}
+        <div class="card-body">
+          <div class="mb-3">
+            <h5 class="card-title">{{ exp.companyname }}</h5>
+            {% comment %} <p class="text-muted">{{alumni.startyear}} - {{alumni.endyear}}</p> {% endcomment %}
+            <p><strong>Years:</strong>{{ exp.year }}</p>
+          </div>
+          <hr />
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Education and Projects Section -->
+        <!-- Projects Section -->
+      {% if project %}
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4>Projects</h4>
+          </div>
+          <div class="card-body">
+            {% for project in project %}
+            <div class="mb-3">
+              <h5 class="card-title">{{project.projectname}}</h5>
+              <p class="text-muted"></p>
+              <p>{{ project.projectdetails }}</p>
+              <a href="{{project.link}}"> {{project.link}} </a>
+            </div>
+            <hr />
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+        
+      </div>
+    </div>
   </div>
+
+  {% endblock body %}
 </div>
-
-
-
-{% endblock body %}
