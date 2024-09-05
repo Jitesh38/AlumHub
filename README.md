@@ -1,4 +1,4 @@
-<b>Project Title: </b><b>Implementation of the Alumni Association platform for the University/Institute.</b><br>
+<b>Project Title: </b><b>Implementation of the Alumni Association platform for the University/Institute.</b><br><br>
 <b> Team Name : Cyber Wizards </b>
 
 <p>
