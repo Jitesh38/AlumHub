@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+<div class="container2">
+    <!-- Title moved above the form and centered -->
+    <div class="title">Login</div>
+    <div class="container1">
+        <form action='/MainApp/login' method="post">
+            {% csrf_token %}
+            <div class="user-details1">
+                
+                <div class="input-box1">
+                    <span class="details1">Username</span>
+                    <input type="text" placeholder="Enter your username" name="loginusername" required />
+                </div>
+                
+                <div class="input-box1">
+                    <span class="details1">Password</span>
+                    <input type="password" placeholder="Enter Password" name="loginpassword" required />
+                </div>
+                
+            </div>
+            <div class="button1">
+                <input type="submit" value="Login" />
+              </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

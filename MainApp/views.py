@@ -25,13 +25,13 @@ def register(request):
         role = request.POST['role']        
 
         # check for errorneous input
-        # if len(username)>10:
-        #     # messages.error(request, " Your user name must be under 10 characters")
-        #     return redirect('register')
+        if len(username)>10:
+            messages.error(request, " Your user name must be under 10 characters")
+            return redirect('register')
 
-        # if not username.isalnum():
-        #     # messages.error(request, " User name should only contain letters and numbers")
-        #     return redirect('index')
+        if not username.isalnum():
+            messages.error(request, " User name should only contain letters and numbers")
+            return redirect('index')
         
         if (pass1!= pass2):
             messages.error(request, "Passwords do not match")
@@ -46,6 +46,8 @@ def register(request):
         messages.success(request, "Account Created Successfully!") 
         request.session['role'] = role
         if role == 'alumni':
+          myuser.is_staff=True
+          myuser.save()          
           return redirect(alumregister)        
         return redirect(index)
 
@@ -67,20 +69,16 @@ def loginPage(request):
 
 
 def alumregister(request):
-  # if  request.session['role'] != 'alumni':
-  #   return redirect(index)
   if request.method == "POST":
     profilePic = request.POST['profilePic']
     course = request.POST['course']   
     startYear = request.POST['startYear'] 
     endYear = request.POST['endYear'] 
-    gpa = request.POST['gpa']  
-    
+    gpa = request.POST['gpa']      
     alum = alumni(user=request.user,profile=profilePic,course=course,startyear=startYear,endyear=endYear,gpa=gpa)
     alum.save()
     messages.success(request,'Profile Updated Successfully')
-    return redirect(alumExp)
-  
+    return redirect(alumExp)  
   return render(request,'alumni_register.html')  
     
 
