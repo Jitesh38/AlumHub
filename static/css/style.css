@@ -79,7 +79,7 @@ a:focus {
 /*header section*/
 .hero_area {
   position: relative;
-  background-color: #d1e3ff;
+  background-color: white;
 }
 
 .header_section .container-fluid {
@@ -440,7 +440,7 @@ a:focus {
 }
 
 .professional_section {
-  background-color: #d1e3ff;
+  background-color: white;
 }
 
 .professional_section .row {
@@ -836,6 +836,50 @@ a:focus {
 
 .footer_section a {
   color: inherit;
+}
+
+.carousel {
+  width: 60%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profession {
+  color: gray;
+  margin-bottom: 15px;
+}
+
+.story {
+  font-size: 1em;
+  line-height: 1.5;
 }
 
 /* end footer section*/

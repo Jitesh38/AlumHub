@@ -3,31 +3,42 @@
 {% block title %} AlumHub {% endblock title %}
 {% block body %}
 
-<section class="slider_section ">
-  <div class="container ">
-    <div class="row" >
-      <div class="col-md-6 ">
-        <div class="detail-box">
-          <h1>
-            Where Memories Meet Momentum
-          </h1>
-          <h4>Transforming Connections into Opportunities</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum voluptatem adipisci. Quos molestiae saepe dicta nobis pariatur, tempora iusto, ad possimus soluta hic praesentium mollitia consequatur beatae, aspernatur culpa.
-          </p>
-          <a href="">
-            Contact Us
-          </a>
+<!-- slider section -->
+    <section class="slider_section "style="background-image: url('{% static 'images/back1.png' %}');opacity: 0.6;height:600px;">
+      <div class="container " style="display: flex;align-items: center;justify-content: center;">
+        <div class="row" style="height: 300px;width: 700px;">
+          <!-- <div class="col-md-6 ">
+            <div class="detail-box"> -->
+              <center><h1 style="color: white;">
+                Where Memories Meet Momentum
+              </h1>
+              <h4 style="color: white;">Transforming Connections into Opportunities</h4>
+              <p style="color: white;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum voluptatem adipisci. Quos molestiae saepe dicta nobis pariatur, tempora iusto, ad possimus soluta hic praesentium mollitia consequatur beatae, aspernatur culpa.
+              </p>
+              <a href="" class="con" style=" display: inline-block;
+              font-family: 'Merriweather Sans', sans-serif;
+              text-transform: uppercase;
+              padding: 10px 45px;
+              background-color: #6C4E31;
+              border: 1px solid #6C4E31;
+              border-radius: 5px;
+              color: #ffffff;
+              margin-top: 15px;">
+                Contact Us
+              </a>
+              </center>
+            <!-- </div>
+          </div> -->
+          <!-- <div class="col-md-6">
+            <div class="img-box">
+              <img src="images/main.png" alt="">
+            </div>
+          </div> -->
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="img-box">
-          <img src="{% static 'images/main.png' %}" alt="">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
+    <!-- end slider section -->
 
 
   <!-- feature section -->
@@ -65,6 +76,7 @@
   <!-- end feature section -->
 
   <!-- about section -->
+
   <section class="about_section layout_padding-bottom">
     <div class="container">
       <div class="row">
@@ -74,7 +86,7 @@
               About us
             </h2>
             <p>
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomisedThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised
+              Welcome to AlumHub, where we bring together alumni and current students to create a vibrant community of learning, growth, and support. Our mission is to bridge the gap between past and present, fostering meaningful connections that benefit everyone involved.<br>we envision a world where alumni and students are seamlessly connected, leveraging each other's experiences and expertise to achieve personal and professional success. We believe that strong networks are built on shared knowledge, collaboration, and mutual support.
             </p>
             <a href="">
               Read More
@@ -83,12 +95,13 @@
         </div>
         <div class="col-lg-7 col-md-6">
           <div class="img-box">
-            <img src="{% static 'images/about-img.jpg' %}" alt="">
+            <img src="{% static 'images/about.jpg' %}" alt="">
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <!-- end about section -->
 
 
@@ -191,7 +204,7 @@
 
   <!-- client section -->
 
-  <section class="client_section ">
+  <!-- <section class="client_section ">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
@@ -212,7 +225,7 @@
             <div class="box">
               <div class="client_id">
                 <div class="img-box">
-                  <img src="images/client-1.jpg" alt="">
+                  <img src="{% static 'images/client-1.jpg' %}" alt="">
                 </div>
                 <div class="client_detail">
                   <div class="client_info">
@@ -319,7 +332,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- end client section -->
 
