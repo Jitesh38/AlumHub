@@ -19,8 +19,7 @@
   font-weight: 600;
   position: relative;
   text-align: center;
-  margin-bottom: 20px;
-  /* Add space between title and form */
+  margin-bottom: 20px; /* Add space between title and form */
 }
 
 .container2 .title::before {
@@ -46,8 +45,7 @@
 
 .user-details1 {
   display: flex;
-  flex-direction: column;
-  /* Stack inputs vertically */
+  flex-direction: column; /* Stack inputs vertically */
   align-items: center;
   justify-content: space-between;
   margin: 20px 0 12px 0;

@@ -10,7 +10,7 @@
   </form>
 
   {% for alumni in alumni  %}
-    <p>{{alumni.user.first_name}} {{alumni.user.last_name}}</p>
+    <p><a href="/profile/{{alumni.user.username}}">{{alumni.user.first_name}} {{alumni.user.last_name}}</a></p>
   {% endfor %}
 
   {% for alluser in alluser  %}
