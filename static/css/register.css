@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+.container2 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #c7cccf;
+    margin: 0;
+}
+
+/* Center the title */
+.container2 .title {
+    /* background-color: black;
+    color: wheat; */
+    font-size: 40px;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px; /* Add space between title and form */
+}
+
+.container2 .title::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #c7cccf, #6c4e31);
+    transform: translateX(-50%);
+}
+
+.container1 {
+    max-width: 700px;
+    width: 100%;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.user-details1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+.input-box1 {
+    margin-bottom: 15px;
+    width: calc(50% - 10px);
+}
+
+.input-box1 span.details1 {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-details1 .input-box1 input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.user-details1 .input-box1 input:focus,
+.user-details1 .input-box1 input:valid {
+    border-color: #6c4e31;
+}
+
+.gender-details1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.category1 {
+    display: flex;
+    width: 80%;
+    margin: 14px 0;
+    justify-content: space-between;
+}
+
+.category1 label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.category1 label .dot {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background: #d9d9d9;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+#dot-1:checked ~ .category1 label .one1,
+#dot-2:checked ~ .category1 label .two1 {
+    background: #6c4e31;
+    border-color: #d9d9d9;
+}
+
+form input[type="radio"] {
+    display: none;
+}
+
+.button1 {
+    height: 45px;
+    margin: 35px 0;
+}
+
+.button1 input {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #c7cccf, #6c4e31);
+}
+
+.button1 input:hover {
+    background: linear-gradient(135deg, #6c4e31, #c7cccf);
+}
+
+@media (max-width: 768px) {
+    .input-box1 {
+        width: 100%;
+    }
+}
+form .category1 {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 20px; /* Add spacing between the checkboxes */
+}
+
+form .category1 label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+form .category1 label input[type="checkbox"] {
+    margin-right: 10px;
+}
