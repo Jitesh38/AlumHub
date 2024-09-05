@@ -50,7 +50,7 @@ class Seminar(models.Model):
     description = models.CharField(max_length=200)
     
     def __str__(self):
-      return self.mentor_name
+      return self.mentor_name 
     
 # class Success(models.Model):
 #     alumni = models.ForeignKey(alumni,on_delete=models.CASCADE)  

@@ -29,5 +29,6 @@ urlpatterns = [
     path('seminar', views.seminar, name='seminar'),
     path('alumni', views.alumniFunc, name='alumni'),
     path('search', views.search, name='alumni'),
-    path('alumniexp', views.alumniExp, name='alumniexp'),
+    path('alumexp', views.alumExp, name='alumexp'),
+    path('alumpr', views.alumProject, name='alumpr'),    
 ]

@@ -79,7 +79,7 @@ def alumregister(request):
     alum = alumni(user=request.user,profile=profilePic,course=course,startyear=startYear,endyear=endYear,gpa=gpa)
     alum.save()
     messages.success(request,'Profile Updated Successfully')
-    return redirect(index)
+    return redirect(alumExp)
   
   return render(request,'alumni_register.html')  
     
@@ -132,8 +132,33 @@ def search(request):
         return render(request,'alumni_all.html',context)
   return redirect(alumniFunc)
 
-def alumniExp(request):
-  return render(request,'alumni_exp.html')
+def alumExp(request):
+  if request.method == "POST":
+    companyName = request.POST['companyName']
+    yearsOfExperience = request.POST['yearsOfExperience']   
+    print(companyName,yearsOfExperience)
+    alumni1=alumni.objects.filter(user=request.user).first()
+    exp=experience(alumni=alumni1,companyname=companyName,year=yearsOfExperience)
+    exp.save()  
+    print(alumni1)
+    messages.success(request,"Added Experience Successfully.")
+    return redirect(alumProject)
+  return render(request,'alumni_exp.html') 
+
+
+
+def alumProject(request):
+  if request.method == "POST":
+    projectName = request.POST['projectName']
+    projectDescription = request.POST['projectDescription']   
+    projectLink = request.POST['projectLink']   
+    print(projectName,projectDescription,projectLink)
+    alumni1=alumni.objects.filter(user=request.user).first()
+    pr=projects(alumni=alumni1,projectname=projectName,projectdetails=projectDescription,link=projectLink)
+    pr.save()  
+    messages.success(request,"Added Education Details Successfully.")
+    return redirect(alumProject)
+  return render(request,'alumni_project.html') 
 
 # def success(request):
 #     if request.method == 'POST':
