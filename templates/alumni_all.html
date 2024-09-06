@@ -2,20 +2,75 @@
 {% load static %}
 {% block title %} AlumHub - Alumni details {% endblock title %}
 {% block body %}
+<link rel="stylesheet" href="{%static 'css/alumni_all.css' %}"> <!-- Link to your custom CSS -->
 
 <form class="d-flex" action="/search" method="get">
     {% csrf_token %}
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
+    {% comment %} <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+    <button class="btn btn-outline-success" type="submit">Search</button> {% endcomment %}
+
+
+
+    
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="search-box">
+            <input type="text" class="form-control search-input" placeholder="Search users..." name="search" id="search">
+            <button class="btn btn-primary search-button" type="submit">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
+    
+    
+    
+    <div class="container mt-5">
+      <div class="row" id="user-list">
+        <!-- Example User Card -->        
+        
+        {% for alumni in alumni  %}
+        {% if alumni.user.is_staff %}
+        <div class="col-md-4">
+          <a href="/profile/{{ alumni.user.username }}">
+            <div class="card user-card shadow-sm">
+              <div class="card-body text-center">
+                <img src="/media/{{ alumni.profile }}" alt="Profile Picture" class="rounded-circle mb-3 profile-pic">
+                <h5 class="card-title">{{alumni.user.first_name}} {{alumni.user.last_name}}</h5>
+                <p class="card-text text-muted">Software Developer</p>
+              </div>
+            </div>
+          </a>
+          </div>
+            {% endif %}
+            {% endfor %}         
+            
+            <!-- Add more user cards here -->
+          </div>
+        </div>
 
-  {% for alumni in alumni  %}
-    <p><a href="/profile/{{alumni.user.username}}">{{alumni.user.first_name}} {{alumni.user.last_name}}</a></p>
-  {% endfor %}
 
-  {% for alluser in alluser  %}
-  <h1>Name </h1>
-    <p>{{alluser.username}} {{alluser.last_name}}</p>
-  {% endfor %}
+    {% comment %} {% if alluser %}
+    <div class="container mt-5">
+      <div class="row" id="user-list">
+        <!-- Example User Card -->        
+        
+        {% for alluser in alluser  %}
+        <div class="col-md-4">
+              <div class="card user-card shadow-sm">
+                <div class="card-body text-center">
+                  <img src="/media/{{ alluser.profile }}" alt="Profile Picture" class="rounded-circle mb-3 profile-pic">
+                  <h5 class="card-title">{{alluser.username}} {{alluser.last_name}}</h5>
+                  <p class="card-text text-muted">Software Developer</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}         
+            
+            <!-- Add more user cards here -->
+          </div>
+        </div>
+    {% endif %} {% endcomment %}
 
-{% endblock body %}
+{% endblock body %} 

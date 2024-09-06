@@ -22,20 +22,22 @@ def register(request):
         lname = request.POST['lname']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']        
-        role = request.POST['role']        
+        role = request.POST['role'] 
+        
+        print('Role :',role)       
 
         # check for errorneous input
-        if len(username)>10:
-            messages.error(request, " Your user name must be under 10 characters")
-            return redirect('register')
+        # if len(username)>10:
+        #     messages.error(request, " Your user name must be under 10 characters")
+        #     return redirect('register')
 
-        if not username.isalnum():
-            messages.error(request, " User name should only contain letters and numbers")
-            return redirect('index')
+        # if not username.isalnum():
+        #     messages.error(request, " User name should only contain letters and numbers")
+        #     return redirect('index')
         
-        if (pass1!= pass2):
-            messages.error(request, "Passwords do not match")
-            return redirect('index')
+        # if (pass1!= pass2):
+        #     messages.error(request, "Passwords do not match")
+        #     return redirect('index')
 
         myuser = User.objects.create_user(username,email,pass1)
         myuser.first_name = fname
@@ -44,13 +46,11 @@ def register(request):
         user=authenticate(username=myuser.username,password=pass1)        
         login(request,user)
         messages.success(request, "Account Created Successfully!") 
-        request.session['role'] = role
         if role == 'alumni':
           myuser.is_staff=True
           myuser.save()          
           return redirect(alumregister)        
         return redirect(index)
-
   return render(request,'register.html',context)
 
 
@@ -118,15 +118,14 @@ def search(request):
         alumnis = alumni.objects.none()            
     else:
       userFname=User.objects.filter(first_name__icontains=search)
-      userLname=User.objects.filter(last_name=search)
-      alluser=userFname.union(userLname)[0]
-      alumnis=alumni.objects.filter(user=alluser)
+      userLname=User.objects.filter(last_name__icontains=search)
+      alumnis=userFname.union(userLname)
+      print(alumnis)
+      # alumnis=alumni.objects.filter(user=alluser)
       if alumnis.count() == 0:
         messages.warning(request, "Search Results not found.")
-          #is staff logic
       else:
         context={'alumni':alumnis,'search':search}
-        print(alumni)
         return render(request,'alumni_all.html',context)
   return redirect(alumniFunc)
 
